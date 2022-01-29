@@ -10,7 +10,7 @@
             <h1>{{post.title}}</h1>
             <h2 class="subheading">{{post.subtitle}}</h2>
             <span class="meta">Posted by
-              <a href="#">{{post.author_name}}</a>
+              <a href="#">{{post.author.name}}</a>
               on {{post.date}}</span>
           </div>
         </div>
@@ -42,7 +42,7 @@
                         <img src= https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPFqoINdifE40uN4rwuanIPHMjXyHUmDLEGDI6DcDCnn6kiSOMeh7zGURUYr1RQDxG79w&usqp=CAU />
                       </div>
                       <p>{{ comment.text }}</p>
-                      <span class="date sub-text">{{ comment.author_id }}</span>
+                      <span class="date sub-text">{{ comment.comment_author.name }}</span>
                       {% endfor %}
                     </div>
                 </li>
