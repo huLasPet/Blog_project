@@ -36,6 +36,16 @@ def load_user(user_id):
 
 ##CONFIGURE TABLES
 
+class User(UserMixin, db.Model):
+    __tablename__ = "user"
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(100), unique=True)
+    password = db.Column(db.String(100))
+    name = db.Column(db.String(1000))
+    children = relationship("BlogPost", back_populates="author")
+    comments = relationship("Comment", back_populates="comment_author")
+
+
 class BlogPost(db.Model):
     __tablename__ = "blog_posts"
     id = db.Column(db.Integer, primary_key=True)
@@ -47,16 +57,6 @@ class BlogPost(db.Model):
     img_url = db.Column(db.String(250), nullable=False)
     author = relationship("User", back_populates="children")
     comments = relationship("Comment", back_populates="parent_post")
-
-
-class User(UserMixin, db.Model):
-    __tablename__ = "user"
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(100), unique=True)
-    password = db.Column(db.String(100))
-    name = db.Column(db.String(1000))
-    children = relationship("BlogPost", back_populates="author")
-    comments = relationship("Comment", back_populates="comment_author")
 
 
 class Comment(db.Model):
